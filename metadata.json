@@ -1,0 +1,33 @@
+{
+    "$schema": "https://go.kicad.org/pcm/schemas/v1",
+    "name": "PCB Pads to Rectanglepads",
+    "description": "Change all pads of a PCB to rectangle pads",
+    "description_full": "With pcbpads2rectanglepads it is possible to change all pads of a board to rectangle pads. Sometimes this is necessary for old machines that can only read gerber data with rectangle pads.",
+    "identifier": "com.github.sunriax.pads2rectangle",
+    "type": "plugin",
+    "author": {
+        "name": "0x007e",
+        "contact": {
+            "web": "https://www.sunriax.at",
+            "github": "https://github.com/0x007e"
+        }
+    },
+    "maintainer": {
+        "name": "0x007e",
+        "contact": {
+            "web": "https://www.sunriax.at",
+            "github": "https://github.com/0x007e"
+        }
+    },
+    "license": "GPL-3.0",
+    "resources": {
+        "homepage": "https://github.com/sunriax/pads2rectangle"
+    },
+    "versions": [
+        {
+            "version": "1.0",
+            "status": "stable",
+            "kicad_version": "7.0"
+        }
+    ]
+}
