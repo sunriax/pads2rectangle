@@ -1,0 +1,24 @@
+name: Pack addon
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  pack:
+    name: Zip addon
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Zip folder
+        run: |
+          zip -r pads2rectangle.zip ./ -x ".git/*" ".github/*"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Pad2Rectangle artifact
+          path: ./pads2rectangle.zip

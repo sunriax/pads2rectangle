@@ -1,0 +1,42 @@
+name: Pack and release addon
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+    pack:
+        name: Zip addon
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Zip folder
+          run: |
+            zip -r pads2rectangle.zip ./ -x ".git/*" ".github/*"
+        - uses: actions/upload-artifact@v4
+          with:
+            name: Pad2Rectangle artifact
+            path: ./pads2rectangle.zip
+        - name: Create Release
+          id: create_release
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            tag_name: ${{ github.ref }}
+            release_name: Release ${{ github.ref }}
+            body: |
+              Initial Release
+            draft: false
+            prerelease: false              
+        - name: Upload artifact
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ github.token }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./pads2rectangle.zip
+            asset_name: pads2rectangle.zip
+            asset_content_type: application/zip
